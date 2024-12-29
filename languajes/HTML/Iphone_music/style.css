@@ -64,7 +64,7 @@ body{
     transform: scale3d(1.1, 1.1, 1);
     -webkit-animation: appear 1s var(--ease-out) forwards;
     animation: appear 1s var(--ease-out) forwards;
-    --webkit-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .phone::before{
@@ -254,4 +254,83 @@ body{
     max-height: 100%;
     pointer-events: all;
     transform: scale3d(1, 1, 1);
+}
+
+.notch-container:hover~.notch-blur, .notch-container:focus-within~.notch-blur{
+    opacity: 1;
+    max-height: calc(var(--notch-radius) * 2.75 + var(--pad));
+}
+
+.notch-container:focus-within{
+    max-height: calc(var(--notch-radius) *3);
+    --bar-height: 1em;
+    --bar-opacity: 1;
+}
+
+.notch-container:focus-within .left, .notch-container:focus-within .right{
+    max-height: calc(100% - var(--bar-height, 0%) - var(--content-gap));
+}
+
+.notch-container:focus-within~.notch-blur{
+    max-height: calc(var(--notch-radius) * 5);
+    opacity: 1;
+}
+
+.notch-blur{
+    position: absolute;
+    z-index: 2;
+    top: calc(var(--pad) - 3px);
+    right: calc(var(--pad - 3px));
+    left: calc(var(--pad) - 3px);
+    height: 100%;
+    max-height: calc(var(--notch-radius) * 1.5);
+    -webkit-backdrop-filter: blur(0.2em);
+    backdrop-filter: blur(0.2em);
+    fill: blur(0.1em);
+    -webkit-mask-image: linear-gradient(to bottom, black calc(100% - var(--notch-radius)) , transparent);
+    mask-image: linear-gradient(to bottom, black calc(100% - var(--notch-radius)) , transparent);
+    opacity: 0;
+    transition: var(--notch-duration) ease-in-out;
+    border-radius: calc(var(--notch-radius) - var(--pad));
+    transition: var(--notch-duration) var(--ease);
+    transition-property:max-height, max-width, fliter, transform;
+    will-change: max-width, max-height, filter;
+}
+
+.notch{
+    position: relative;
+    background: black;
+    border-radius: var(--notch-radius);
+    pointer-events: all;
+    overflow: hidden;
+    color: white;
+    display: flex;
+    cursor: pointer;
+    width: 100%;
+    transition: inherit;
+    transition-property: inherit;
+    will-change: inherit;
+    filter: drop-shadow(0 1em 2em hsla(0 0% 0%/var(--shadow-opacity, 0)));
+    transform: scale3d(0.375, 0.4, 1);
+    transform-origin: top;
+}
+
+.content{
+    --content-padding: 1.75em;
+    --duration-height: 0.5em;
+    --content-gap: 1em;
+    width:  100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: stretch;
+    padding: var(--content-padding);
+    gap: var(--content-gap);
+    font-size: 125%;
+    transition-property: padding;
+    will-change: padding;
+}
+
+.content .left, .content .right{
+    
 }
