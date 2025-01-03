@@ -441,5 +441,124 @@ body{
     z-index: 4;
     top: calc(var(--pad) * 2);
     right: calc(50% - calc(var(--notch-width) * 0.5));
+    margin-right: calc(var(--pad) * 0.333);
+}
+
+.camera::before{
+    content: "";
+    height: 33.3%;
+    aspect-ratio: 1;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0.25em #4c4da3;
+    background: radial-gradient(#6667ac, transparent 50%) no-repeat 33.3% 10%/75% 50%, radial-gradient(#454680, transparent 50%) no-repeat 60% 85%/50% 50%;
+    background-color: #080928;
+}
+
+.pallete{
+    display: flex;
+    gap: 2em;
+    margin-bottom: -0.25em;   
+}
+
+input[type=radio]{
+    display: none;
+}
+
+.swatch{
+    --swatch-size: 5em;
+    background: white;
+    width: var(--swatch-size);
+    height: var(--swatch-size);
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    border: var(--border-width) solid black;
+    box-sizing: border-box;
+    transition: 0.333s var(--ease-out);
+    transition-property: border-color, transform;
+    background: radial-gradient(100% 100% at 50% 30%, var(--swatch-s1), var(--swatch-s2));
+    opacity: 0;
+    transform: translate3d(0, 20%, 0), scale3d(0.75, 0.75, 1);
+    -webkit-animation: appear 0.333s var(--ease-out) forwards 0.75s;
+    animation: appear 0.333s var(--ease-out) forwards 0.75s;
+}
+
+.swatch:nth-child(1){
+    transform-origin: 80% 200%;
+}
+
+.swatch:nth-child(2){
+    -webkit-animation-delay: 0.8s;
+    animation-delay:  0.8s;
+    transform-origin: 60% 200%;
+}
+
+.swatch:nth-child(3){
+    -webkit-animation-delay: 0.85s;
+    animation-delay:  0.85s;
+    transform-origin: 40% 200%;
+}
+
+.swatch:nth-child(4){
+    -webkit-animation-delay: 0.9s;
+    animation-delay:  0.9s;
+    transform-origin: 20% 200%;
+}
+
+.swatch:before{
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    border: var(--border-width) solid black;
+    background-image: radial-gradient(400% 300% at 50% 225%, transparent 20%,  white);
+}
+
+.swatch[for=deep-purple] {
+    --swatch-s1: hsl(var(--deep-purple), 100% 50%);
+    --swatch-s2: hsl(calc(var(--deep-purple) - 60), 100%, 20%);
+}
+
+.swatch[for=deep-purple]:before{
+    opacity: 0.5;
+}
+
+.swatch[for=gold] {
+    --swatch-s1: hsl(var(--gold), 100% 50%);
+    --swatch-s2: hsl(var(--gold), 100% 50%);
+}
+
+.swatch[for=space-black] {
+    --swatch-s1: hsl(var(--space-black), 100% 20%);
+    --swatch-s2: hsl(var(--space-black), 100% 10%);
+}
+
+.swatch[for=space-black]:before{
+    opacity: 0.5;
+}
+
+.swatch[for=silver] {
+    --swatch-s1: hsl(var(--silver), 100% 80%);
+    --swatch-s2: hsl(var(--silver), 100% 10%);
+}
+
+.swatch[for=silver]:before{
+    opacity: 0.75;
+}
+
+.deep-purple{
+    --c-h: var(--deep-purple);
+    --g-hue-adjust: 60;
+}
+
+.gold{
+    --c-h: var(gold);
+    --g-hue-adjust-2: -100;
+}
+
+.space-black{
+    --c-h: var(--space-black);
+    --g-hue-adjust: 190;
+    --g-hue-adjust-2: 145;    
 }
 
