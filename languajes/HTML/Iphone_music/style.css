@@ -560,5 +560,23 @@ input[type=radio]{
     --c-h: var(--space-black);
     --g-hue-adjust: 190;
     --g-hue-adjust-2: 145;    
+    --g-lightness: 95%;
 }
 
+.silver{
+    --c-h: var(--silver);
+    --c-s: 10%;
+    --g-hue-adjust: 30;    
+    --g-lightness: 95%;
+}
+
+.silver .glow{
+    opacity: 0.25;
+}
+
+#deep-purple:checked~.phone .bg .deep-purple{
+    opacity: 1;
+    z-index: 1;
+    transition-delay: 0s;
+
+}
